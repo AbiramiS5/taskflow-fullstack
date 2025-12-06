@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Tracker</title>
+</head>
+<body>
+    <h1>Crypto Currency Price Tracker</h1>
+    <p>Track live crypto prices using a free API.</p>
+
+    <h3>Bitcoin Price:</h3>
+    <div id="btc"></div>
+
+    <script>
+        async function getBTC() {
+            let data = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json");
+            let json = await data.json();
+            document.getElementById("btc").innerHTML =
+                "USD " + json.bpi.USD.rate;
+        }
+        getBTC();
+        setInterval(getBTC, 10000);
+    </script>
+</body>
+</html>
